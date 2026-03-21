@@ -513,6 +513,14 @@ document.addEventListener("mouseup", () => {
 });
 
 };
+  
+const win = document.getElementById("myWindow");
+const btn = document.getElementById("openBtn");
+
+btn.addEventListener("click", () => {
+  win.style.display = "block";
+});
+  
 </script>
 
   <div class="window" id="myWindow">
@@ -525,7 +533,7 @@ document.addEventListener("mouseup", () => {
   </div>
 </div>
 
-<button onclick="openWindow()" style="margin-top:20px;">
+<button id="openBtn" style="margin-top:20px;">
   Open Window
 </button>
 </body>

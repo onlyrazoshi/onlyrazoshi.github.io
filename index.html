@@ -345,6 +345,8 @@ function drawMatrix(){
 
 function animateMatrix() {
   drawMatrix();
+  drawParticles();
+  updateParticles();
   requestAnimationFrame(animateMatrix);
 }
 animateMatrix();

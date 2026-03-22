@@ -290,7 +290,9 @@ function logTerminal(cmd, result){
 
 input.addEventListener("keydown", (e) => {
   if(e.key === "Enter"){
+     e.preventDefault();
     const cmd = input.value.trim();
+    
     logTerminal(cmd);
 
     if(cmd === "help"){

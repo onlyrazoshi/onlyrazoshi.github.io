@@ -459,30 +459,7 @@ else{
     logTerminal(cmd);
 
    if(cmd === "help"){
-  logTerminal("", "commands: help, whoami, clear");
-}
-else if(cmd === "whoami"){
-  logTerminal("", "you are user 😄");
-}
-else if(cmd === "clear"){
-  terminal.innerHTML = "";
-}
-else if(cmd === "date"){
-  logTerminal("", new Date().toString());
-}
-else if(cmd === "about"){
-  logTerminal("", "Razoshi OS v1.0");
-}
-else if(cmd === "github"){
-  window.open("https://github.com/onlyrazoshi");
-}
-else if(cmd === "discord"){
-  window.open("https://discord.gg/eqfSepRC");
-}
-else{
-  logTerminal("", "command not found");
-}
-
+ 
     input.value = "";
   }
 });

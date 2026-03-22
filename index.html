@@ -541,8 +541,13 @@ function typeEffect() {
 }
 
 typeEffect();
-  setInterval(drawMatrix, 33);
 
+function animateMatrix() {
+  drawMatrix();
+  requestAnimationFrame(animateMatrix);
+}
+animateMatrix();
+  
 </script>
 
   <div class="window" id="myWindow">

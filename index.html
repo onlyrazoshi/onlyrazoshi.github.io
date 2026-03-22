@@ -318,15 +318,11 @@ const ctx = canvas.getContext("2d");
 function resizeCanvas(){
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-
-  columns = Math.floor(canvas.width / fontSize);
-  drops = Array(columns).fill(1);
 }
-  
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
-const letters = "12";
+const letters = "01";
 const fontSize = 16;
 const columns = Math.floor(canvas.width / fontSize);
 const drops = Array(columns).fill(1);
@@ -545,7 +541,6 @@ function typeEffect() {
 }
 
 typeEffect();
-  
 
 </script>
 

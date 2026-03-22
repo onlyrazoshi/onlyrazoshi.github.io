@@ -582,6 +582,8 @@ document.addEventListener("DOMContentLoaded", () => {
 let lineIndex = 0;
 
 function typeEffect() {
+  const terminal = document.getElementById("terminalLog");
+
   if (lineIndex >= fakeLines.length) return;
 
   let text = fakeLines[lineIndex];
@@ -599,7 +601,7 @@ function typeEffect() {
     }
   }, 30);
 }
-
+  
 typeEffect();
 
 function animateMatrix() {

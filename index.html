@@ -487,12 +487,10 @@ function logTerminal(cmd, result){
 });
 
 // Fetch GitHub repos
-fetch("https://api.github.com/users/onlyrazoshi/repos")
+const repoContainer = document.getElementById("repos");
+  fetch("https://api.github.com/users/onlyrazoshi/repos")
 .then(res => res.json())
 .then(data => {
-  logTerminal("whoami", "onlyrazoshi");
-  logTerminal("status", "online");
-  logTerminal("repositories:");
 
   data.slice(0,6).forEach(repo => {
     logTerminal(repo.name, repo.description || "no description");

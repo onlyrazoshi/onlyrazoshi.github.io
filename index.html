@@ -414,22 +414,23 @@ input.addEventListener("keydown", (e) => {
 
     const cmd = input.value.trim();
 
-    history.push(cmd); 
+    history.push(cmd);
     historyIndex = history.length;
 
     logTerminal(cmd);
+
     if(cmd === "help"){
-  logTerminal("", "commands: help, whoami, clear");
-}
-else if(cmd === "whoami"){
-  logTerminal("", "you are user 😄");
-}
-else if(cmd === "clear"){
-  terminal.innerHTML = "";
-}
-else{
-  logTerminal("", "command not found");
-}
+      logTerminal("", "commands: help, whoami, clear");
+    }
+    else if(cmd === "whoami"){
+      logTerminal("", "you are user 😄");
+    }
+    else if(cmd === "clear"){
+      terminal.innerHTML = "";
+    }
+    else{
+      logTerminal("", "command not found");
+    }
 
     input.value = "";
   }

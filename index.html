@@ -422,15 +422,16 @@ input.addEventListener("keydown", (e) => {
     }
 
     logTerminal(cmd);
-
-    if(cmd === "help"){
-      logTerminal("", "commands: help, whoami, clear");
-    }
-    else if(cmd === "whoami"){
-      logTerminal("", "you are user 😄");
-    }
-    else if(cmd === "clear"){
-      else if(cmd === "date"){
+if(cmd === "help"){
+  logTerminal("", "commands: help, whoami, clear, date, about, discord, github");
+}
+else if(cmd === "whoami"){
+  logTerminal("", "you are user 😄");
+}
+else if(cmd === "clear"){
+  terminal.innerHTML = "";
+}
+else if(cmd === "date"){
   logTerminal("", new Date().toString());
 }
 else if(cmd === "about"){
@@ -444,11 +445,9 @@ else if(cmd === "github"){
   logTerminal("", "Opening GitHub...");
   window.open("https://github.com/onlyrazoshi");
 }
-      terminal.innerHTML = "";
-    }
-    else{
-      logTerminal("", "command not found");
-    }
+else{
+  logTerminal("", "command not found");
+}
 
     input.value = "";
   }

@@ -271,46 +271,6 @@ canvas#matrix {
 <input id="cmdInput" placeholder="type a command"
 style="width:80%; max-width:700px; background:black; color:#00ff88; border:1px solid #00ff88; padding:10px; margin-top:10px;">
 
-<script>
-const input = document.getElementById("cmdInput");
-const terminal = document.getElementById("terminalLog");
-
-function logTerminal(cmd, result){
-  if(cmd){
-    const cmdP = document.createElement("p");
-    cmdP.innerHTML = `<span>$</span> ${cmd}`;
-    terminal.appendChild(cmdP);
-  }
-
-  if(result){
-    const resP = document.createElement("p");
-    resP.textContent = result;
-    terminal.appendChild(resP);
-  }
-
-  terminal.scrollTop = terminal.scrollHeight;
-}
-
-input.addEventListener("keydown", (e) => {
-  if(e.key === "Enter"){
-    e.preventDefault(); 
-    const cmd = input.value.trim();
-
-    logTerminal(cmd);
-
-    if(cmd === "help"){
-      logTerminal("", "commands: help, whoami, clear");
-    } else if(cmd === "whoami"){
-      logTerminal("", "you are user 😄");
-    } else if(cmd === "clear"){
-      terminal.innerHTML = "";
-    }
-
-    input.value = "";
-  }
-});
-</script>
-
 <!-- VISITOR + CPU PANEL -->
 <div id="visitorPanel">
   CPU Usage: <span id="cpuUsage">0%</span> | Guest: <span id="visitorInfo">loading...</span>
@@ -442,6 +402,27 @@ document.body.addEventListener("click", () => { audio.play().catch(()=>{}); }, {
 
 /* TERMINAL / GITHUB REPOS */
 const terminal = document.getElementById("terminalLog");
+  const input = document.getElementById("cmdInput");
+
+input.addEventListener("keydown", (e) => {
+  if(e.key === "Enter"){
+    e.preventDefault();
+
+    const cmd = input.value.trim();
+
+    logTerminal(cmd);
+
+    if(cmd === "help"){
+      logTerminal("", "commands: help, whoami, clear");
+    } else if(cmd === "whoami"){
+      logTerminal("", "you are user 😄");
+    } else if(cmd === "clear"){
+      terminal.innerHTML = "";
+    }
+
+    input.value = "";
+  }
+});
 const repoContainer = document.getElementById("repos");
 
 function logTerminal(cmd, result){

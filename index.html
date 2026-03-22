@@ -430,6 +430,20 @@ input.addEventListener("keydown", (e) => {
       logTerminal("", "you are user 😄");
     }
     else if(cmd === "clear"){
+      else if(cmd === "date"){
+  logTerminal("", new Date().toString());
+}
+else if(cmd === "about"){
+  logTerminal("", "Razoshi OS - custom web terminal 👾");
+}
+else if(cmd === "discord"){
+  logTerminal("", "Opening Discord...");
+  window.open("https://discord.gg/eqfSepRC");
+}
+else if(cmd === "github"){
+  logTerminal("", "Opening GitHub...");
+  window.open("https://github.com/onlyrazoshi");
+}
       terminal.innerHTML = "";
     }
     else{

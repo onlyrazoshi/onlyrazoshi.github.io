@@ -452,18 +452,7 @@ input.addEventListener("keydown", (e) => {
   }
 
 });
-  if(e.key === "Enter"){
-    e.preventDefault();
 
-    const cmd = input.value.trim();
-
-    logTerminal(cmd);
-
-   if(cmd === "help"){
- 
-    input.value = "";
-  }
-});
 const repoContainer = document.getElementById("repos");
 
 function logTerminal(cmd, result){

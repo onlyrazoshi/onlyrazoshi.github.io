@@ -265,44 +265,45 @@ canvas#matrix {
   <a class="button" href="https://guns.lol/onlyrazoshi" target="_blank">Razoshi's gunz.lol</a>
 </div>
 
-<!-- TERMINAL -->
+  <!-- TERMINAL -->
 <div class="terminal" id="terminalLog"></div>
-  <input id="cmdInput" placeholder="type a command..." 
+
+<input id="cmdInput" placeholder="type a command"
 style="width:80%; max-width:700px; background:black; color:#00ff88; border:1px solid #00ff88; padding:10px; margin-top:10px;">
-  
+
 <script>
 const input = document.getElementById("cmdInput");
 const terminal = document.getElementById("terminalLog");
-  
+
 function logTerminal(cmd, result){
   if(cmd){
     const cmdP = document.createElement("p");
     cmdP.innerHTML = `<span>$</span> ${cmd}`;
     terminal.appendChild(cmdP);
   }
+
   if(result){
     const resP = document.createElement("p");
     resP.textContent = result;
     terminal.appendChild(resP);
   }
+
   terminal.scrollTop = terminal.scrollHeight;
 }
 
 input.addEventListener("keydown", (e) => {
   if(e.key === "Enter"){
-     e.preventDefault();
+    e.preventDefault(); 
     const cmd = input.value.trim();
-    
+
     logTerminal(cmd);
 
     if(cmd === "help"){
       logTerminal("", "commands: help, whoami, clear");
     } else if(cmd === "whoami"){
-      logTerminal("", "razoshi");
+      logTerminal("", "you are user 😄");
     } else if(cmd === "clear"){
       terminal.innerHTML = "";
-    } else {
-      logTerminal("", "command not found");
     }
 
     input.value = "";

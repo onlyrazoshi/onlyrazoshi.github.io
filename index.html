@@ -401,10 +401,12 @@ function prevSong() {
 document.body.addEventListener("click", () => { audio.play().catch(()=>{}); }, { once: true });
 
 /* TERMINAL / GITHUB REPOS */
+document.addEventListener("DOMContentLoaded", () => {
+
 const terminal = document.getElementById("terminalLog");
-  const input = document.getElementById("cmdInput");
-  
-  let history = [];
+const input = document.getElementById("cmdInput");
+
+let history = [];
 let historyIndex = -1;
 
 input.addEventListener("keydown", (e) => {
@@ -414,8 +416,10 @@ input.addEventListener("keydown", (e) => {
 
     const cmd = input.value.trim();
 
-    history.push(cmd);
-    historyIndex = history.length;
+    if(cmd !== ""){
+      history.push(cmd);
+      historyIndex = history.length;
+    }
 
     logTerminal(cmd);
 
@@ -453,19 +457,21 @@ input.addEventListener("keydown", (e) => {
 
 });
 
-const repoContainer = document.getElementById("repos");
-
 function logTerminal(cmd, result){
   const cmdP = document.createElement("p");
   cmdP.innerHTML = `<span>$</span> ${cmd}`;
   terminal.appendChild(cmdP);
+
   if(result){
     const resP = document.createElement("p");
     resP.textContent = result;
     terminal.appendChild(resP);
   }
+
   terminal.scrollTop = terminal.scrollHeight;
 }
+
+});
 
 // Fetch GitHub repos
 fetch("https://api.github.com/users/onlyrazoshi/repos")

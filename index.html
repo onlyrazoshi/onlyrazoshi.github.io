@@ -441,7 +441,38 @@ input.addEventListener("keydown", (e) => {
 if(cmd === "help"){
   logTerminal("", "commands: help, whoami, clear, date, about, discord, github");
 }
-  else if(cmd === "ls"){
+    
+}
+
+else if(cmd === "pwd"){
+  logTerminal("", currentPath);
+}
+else if(cmd === "whoami"){
+  logTerminal("", "you are user 😄");
+}
+else if(cmd === "clear"){
+  terminal.innerHTML = "";
+}
+else if(cmd === "date"){
+  logTerminal("", new Date().toString());
+}
+else if(cmd === "about"){
+  logTerminal("", "Razoshi OS - custom web terminal 👾");
+}
+else if(cmd === "discord"){
+  logTerminal("", "Opening Discord...");
+  window.open("https://discord.gg/eqfSepRC");
+}
+else if(cmd === "github"){
+  logTerminal("", "Opening GitHub...");
+  window.open("https://github.com/onlyrazoshi");
+}
+else{
+  if(cmd === "help"){
+  logTerminal("", "commands: help, whoami, clear, date, about, discord, github");
+}
+
+else if(cmd === "ls"){
   logTerminal("", Object.keys(getDir(currentPath)).join("  "));
 }
 
@@ -473,26 +504,7 @@ else if(cmd.startsWith("cat ")){
 else if(cmd === "pwd"){
   logTerminal("", currentPath);
 }
-else if(cmd === "whoami"){
-  logTerminal("", "you are user 😄");
-}
-else if(cmd === "clear"){
-  terminal.innerHTML = "";
-}
-else if(cmd === "date"){
-  logTerminal("", new Date().toString());
-}
-else if(cmd === "about"){
-  logTerminal("", "Razoshi OS - custom web terminal 👾");
-}
-else if(cmd === "discord"){
-  logTerminal("", "Opening Discord...");
-  window.open("https://discord.gg/eqfSepRC");
-}
-else if(cmd === "github"){
-  logTerminal("", "Opening GitHub...");
-  window.open("https://github.com/onlyrazoshi");
-}
+
 else{
   logTerminal("", "command not found");
 }

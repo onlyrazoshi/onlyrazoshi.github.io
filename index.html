@@ -592,26 +592,18 @@ document.addEventListener("DOMContentLoaded", () => {
     cpuSpan.innerText = Math.floor(Math.random()*100) + "%";
   }, 1000);
 
-  // ✅ IP (STABLE + FALLBACK)
-  fetch("https://ipapi.co/json/")
-  .then(res => res.json())
-  .then(data => {
-    visitorInfoSpan.innerText =
-      data.ip + " — " + data.city + ", " + data.country_name;
-  })
-  .catch(() => {
-    // fallback
-    fetch("https://api.ipify.org?format=json")
-    .then(res => res.json())
-    .then(ip => {
-      visitorInfoSpan.innerText = ip.ip + " — Unknown location";
-    })
-    .catch(()=>{
-      visitorInfoSpan.innerText = "Guest user";
-    });
-  });
+  // IP 
+ fetch("https://ipapi.co/json/")
+.then(res => res.json())
+.then(data => {
+  visitorInfoSpan.innerText =
+    data.ip + " — " + data.city + ", " + data.country_name;
+})
+.catch(() => {
+  visitorInfoSpan.innerText = "Guest user";
+});
 
-  // ✅ VISITOR COUNTER (NO RESET EVER)
+  // VISITOR COUNTER 
   fetch("https://api.countapi.xyz/hit/razoshi-os/visits")
   .then(res => res.json())
   .then(data => {

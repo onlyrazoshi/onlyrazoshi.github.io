@@ -286,6 +286,10 @@ style="width:80%; max-width:700px; background:black; color:#00ff88; border:1px s
 <!-- VISITOR + CPU PANEL -->
 <div id="visitorPanel">
   CPU Usage: <span id="cpuUsage">0%</span> | Guest: <span id="visitorInfo">loading...</span>
+  
+  <br>
+  
+  <span id="views">Visitors: loading...</span>
 </div>
 
 <!-- MUSIC PLAYER -->
@@ -586,9 +590,25 @@ const visitorInfoSpan = document.getElementById("visitorInfo");
 setInterval(()=>{
   cpuSpan.innerText = Math.floor(Math.random()*100) + "%";
 }, 1000);
-
+  
+  const visitorInfoSpan = document.getElementById("visitorInfo");
 // Visitor info
 fetch("https://ipapi.co/json/")
+.then(res => res.json())
+.then(data=>{
+  visitorInfoSpan.innerText = `${data.ip} — ${data.city}, ${data.country_name}`;
+})
+.catch(err=>{
+  visitorInfoSpan.innerText = "Visitor info unavailable";
+});
+
+
+// Visitors counter
+fetch("https://api.countapi.xyz/hit/razoshi/os")
+.then(res => res.json())
+.then(data => {
+  document.getElementById("views").innerText = "Visitors: " + data.value;
+});
 .then(res => res.json())
 .then(data=>{
   visitorInfoSpan.innerText = `${data.ip} — ${data.city}, ${data.country_name}`;

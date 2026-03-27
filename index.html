@@ -677,6 +677,11 @@ setInterval(()=>{
   document.getElementById("status").innerText =
     Math.random() > 0.2 ? "● online" : "● lagging...";
 }, 3000);
+
+window.onerror = function(msg, url, line){
+  console.log("Error:", msg, "Line:", line);
+  return true;
+};
 </script>
 
   <div class="window" id="myWindow">

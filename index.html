@@ -421,7 +421,12 @@ function getDir(path){
   return path.split("/").filter(Boolean).reduce((dir, p) => dir[p], fs["/"]);
 }
 
-let history = JSON.parse(localStorage.getItem("history")) || [];
+let history;
+try {
+  history = JSON.parse(localStorage.getItem("history")) || [];
+} catch {
+  history = [];
+}
 let historyIndex = -1;
 
 input.addEventListener("keydown", (e) => {

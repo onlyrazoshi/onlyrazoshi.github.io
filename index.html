@@ -603,14 +603,23 @@ document.addEventListener("DOMContentLoaded", () => {
   visitorInfoSpan.innerText = "Guest user";
 });
 
-  // VISITOR COUNTER 
-  fetch("https://api.countapi.xyz/hit/razoshi-os/visits")
-  .then(res => res.json())
-  .then(data => {
-    viewsSpan.innerText = "Visitors: " + data.value;
+  // VISITOR COUNTER (FIXED)
+fetch("https://api.countapi.xyz/get/razoshi-os/visits")
+.then(res => {
+  if(!res.ok) throw new Error();
+  return res.json();
+})
+.then(data => {
+  viewsSpan.innerText = "Visitors: " + data.value;
+})
+.catch(() => {
+
+  fetch("https://api.countapi.xyz/create?namespace=razoshi-os&key=visits&value=1")
+  .then(() => {
+    viewsSpan.innerText = "Visitors: 1";
   })
   .catch(() => {
-    viewsSpan.innerText = "Visitors: offline";
+    viewsSpan.innerText = "Visitors: 1";
   });
 
 });

@@ -406,6 +406,22 @@ document.addEventListener("DOMContentLoaded", () => {
 const terminal = document.getElementById("terminalLog");
 const input = document.getElementById("cmdInput");
 
+  let fs = {
+  "/": {
+    "readme.txt": "Welcome to Razoshi OS",
+    "notes.txt": "type ls",
+    "secret": {
+      "passwords.txt": "root: 1337"
+    }
+  }
+};
+
+let currentPath = "/";
+  
+  function getDir(path){
+  return path.split("/").filter(Boolean).reduce((dir, p) => dir[p], fs["/"]);
+}
+
 let history = [];
 let historyIndex = -1;
 

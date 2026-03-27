@@ -587,42 +587,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const visitorInfoSpan = document.getElementById("visitorInfo");
   const viewsSpan = document.getElementById("views");
 
-  // CPU fake
+  // CPU
   setInterval(()=>{
     cpuSpan.innerText = Math.floor(Math.random()*100) + "%";
   }, 1000);
 
-  // ✅ Visitor INFO (NEW API)
-  fetch("https://ipwho.is/")
+  // ✅ IP (STABLE + FALLBACK)
+  fetch("https://ipapi.co/json/")
   .then(res => res.json())
   .then(data => {
-    console.log("IP DATA:", data); 
-
-    if (!data.success) {
-      throw new Error("IP API failed");
-    }
-
     visitorInfoSpan.innerText =
-      data.ip + " — " + data.city + ", " + data.country;
+      data.ip + " — " + data.city + ", " + data.country_name;
   })
-  .catch(err => {
-    console.log("IP ERROR:", err);
-    visitorInfoSpan.innerText = "Cannot detect location";
+  .catch(() => {
+    // fallback
+    fetch("https://api.ipify.org?format=json")
+    .then(res => res.json())
+    .then(ip => {
+      visitorInfoSpan.innerText = ip.ip + " — Unknown location";
+    })
+    .catch(()=>{
+      visitorInfoSpan.innerText = "Guest user";
+    });
   });
 
-  // ✅ Visitors counter (NEW + RESET)
-  fetch("https://api.countapi.xyz/create?namespace=razoshi-os&key=visits&value=0")
-  .then(() => {
-    return fetch("https://api.countapi.xyz/hit/razoshi-os/visits");
-  })
+  // ✅ VISITOR COUNTER (NO RESET EVER)
+  fetch("https://api.countapi.xyz/hit/razoshi-os/visits")
   .then(res => res.json())
   .then(data => {
-    console.log("COUNT DATA:", data);
     viewsSpan.innerText = "Visitors: " + data.value;
   })
-  .catch(err => {
-    console.log("COUNT ERROR:", err);
-    viewsSpan.innerText = "Counter failed";
+  .catch(() => {
+    viewsSpan.innerText = "Visitors: offline";
   });
 
 });

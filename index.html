@@ -427,7 +427,7 @@ try {
 } catch {
   history = [];
 }
-let historyIndex = -1;
+let historyIndex = history.length;
 
 input.addEventListener("keydown", (e) => {
 
@@ -510,12 +510,15 @@ else{
     input.value = "";
   }
 
-  else if(e.key === "ArrowUp"){
-    if(historyIndex > 0){
-      historyIndex--;
-      input.value = history[historyIndex];
-    }
+ else if(e.key === "ArrowUp"){
+  if(history.length === 0) return;
+
+  if(historyIndex > 0){
+    historyIndex--;
   }
+
+  input.value = history[historyIndex] || "";
+}
 
   else if(e.key === "ArrowDown"){
     if(historyIndex < history.length - 1){

@@ -243,14 +243,26 @@ canvas#matrix {
 .content {
   padding: 10px;
 }
+#loadingBar {
+  width: 0%;
+  height: 5px;
+  background: #00ff88;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: width 2s ease;
+}
 </style>
 </head>
 <body>
+  
 
 <!-- LOGIN SCREEN -->
 <div id="login">
   <h1>Welcome to Razoshi OS</h1>
   <button onclick="startOS()">Enter</button>
+  
+  <div id="loadingBar"></div>
 </div>
 
 <!-- AVATAR AND HEADER -->
@@ -307,12 +319,17 @@ style="width:80%; max-width:700px; background:black; color:#00ff88; border:1px s
 <div id="mouseGlow"></div>
 
 <script>
+  
 /* LOGIN */
 function startOS(){
   const login = document.getElementById("login");
   login.classList.add("hide");
   setTimeout(()=>{ login.style.display="none"; }, 500);
 }
+  window.addEventListener("load", () => {
+  const bar = document.getElementById("loadingBar");
+  bar.style.width = "100%";
+});
 
 /* MATRIX */
 const canvas = document.getElementById("matrix");

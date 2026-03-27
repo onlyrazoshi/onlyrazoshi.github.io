@@ -673,6 +673,10 @@ function animateMatrix() {
 }
 animateMatrix();
   
+setInterval(()=>{
+  document.getElementById("status").innerText =
+    Math.random() > 0.2 ? "● online" : "● lagging...";
+}, 3000);
 </script>
 
   <div class="window" id="myWindow">
@@ -688,5 +692,8 @@ animateMatrix();
 <button id="openBtn" style="margin-top:20px;">
   Open Window
 </button>
+  
+<p id="status" style="color:#00ff88; text-align:center;">● online</p>
+  
 </body>
 </html>

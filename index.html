@@ -607,12 +607,10 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("https://api.countapi.xyz/hit/razoshi-os/visits")
 .then(res => res.json())
 .then(data => {
-  document.getElementById("views").innerText =
-    "Visitors: " + data.value;
+  views.innerText = "Visitors: " + data.value;
 })
 .catch(() => {
-  document.getElementById("views").innerText =
-    "Visitors: 1";
+  views.innerText = "Visitors: offline (API blocked)";
 });
   
 /* SMOOTH MOUSE GLOW */

@@ -604,18 +604,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
   // VISITOR COUNTER 
-  // ✅ LOCAL VISITOR COUNTER (100% working)
-let visits = localStorage.getItem("visits");
+  fetch("https://api.countapi.xyz/hit/razoshi-os/visits")
+  .then(res => res.json())
+  .then(data => {
+    viewsSpan.innerText = "Visitors: " + data.value;
+  })
+  .catch(() => {
+    viewsSpan.innerText = "Visitors: offline";
+  });
 
-if (!visits) {
-  visits = 1;
-} else {
-  visits = parseInt(visits) + 1;
-}
-
-localStorage.setItem("visits", visits);
-
-viewsSpan.innerText = "Visitors: " + visits;
+});
   
 /* SMOOTH MOUSE GLOW */
 const glow = document.getElementById("mouseGlow");

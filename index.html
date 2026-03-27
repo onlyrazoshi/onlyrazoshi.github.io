@@ -583,30 +583,36 @@ const repoContainer = document.getElementById("repos");
 
 /* VISITOR PANEL & CPU */
 const cpuSpan = document.getElementById("cpuUsage");
+const visitorInfoSpan = document.getElementById("visitorInfo");
+const viewsSpan = document.getElementById("views");
 
-
-// Fake CPU usage
+// Fake CPU
 setInterval(()=>{
   cpuSpan.innerText = Math.floor(Math.random()*100) + "%";
 }, 1000);
-  
-const visitorInfoSpan = document.getElementById("visitorInfo");
 
-// Visitor info
+// Visitor INFO (SAFE VERSION)
 fetch("https://ipapi.co/json/")
 .then(res => res.json())
-.then(data=>{
-visitorInfoSpan.innerText = `${data.ip} — ${data.city}, ${data.country_name}`;
+.then(data => {
+  const ip = data.ip || "unknown IP";
+  const city = data.city || "unknown city";
+  const country = data.country_name || "unknown country";
+
+  visitorInfoSpan.innerText = `${ip} — ${city}, ${country}`;
 })
-.catch(()=>{
-  visitorInfoSpan.innerText = "Visitor info unavailable";
+.catch(() => {
+  visitorInfoSpan.innerText = "Guest user";
 });
 
-// Visitors counter
+// Visitors COUNTER (SAFE VERSION)
 fetch("https://api.countapi.xyz/hit/razoshi/os")
 .then(res => res.json())
 .then(data => {
-  document.getElementById("views").innerText = "Visitors: " + data.value;
+  viewsSpan.innerText = "Visitors: " + (data.value || 0);
+})
+.catch(() => {
+  viewsSpan.innerText = "Visitors: offline";
 });
   
 /* SMOOTH MOUSE GLOW */

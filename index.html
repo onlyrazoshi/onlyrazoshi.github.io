@@ -604,14 +604,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
   // VISITOR COUNTER 
-  fetch("https://api.countapi.xyz/hit/razoshi-os/visits")
-.then(res => res.json())
-.then(data => {
-  views.innerText = "Visitors: " + data.value;
-})
-.catch(() => {
-  views.innerText = "Visitors: offline (API blocked)";
-});
+  // ✅ LOCAL VISITOR COUNTER (100% working)
+let visits = localStorage.getItem("visits");
+
+if (!visits) {
+  visits = 1;
+} else {
+  visits = parseInt(visits) + 1;
+}
+
+localStorage.setItem("visits", visits);
+
+viewsSpan.innerText = "Visitors: " + visits;
   
 /* SMOOTH MOUSE GLOW */
 const glow = document.getElementById("mouseGlow");

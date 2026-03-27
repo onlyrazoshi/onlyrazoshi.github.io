@@ -323,13 +323,15 @@ style="width:80%; max-width:700px; background:black; color:#00ff88; border:1px s
 /* LOGIN */
 function startOS(){
   const login = document.getElementById("login");
-  login.classList.add("hide");
-  setTimeout(()=>{ login.style.display="none"; }, 500);
-}
-  window.addEventListener("load", () => {
   const bar = document.getElementById("loadingBar");
-  bar.style.width = "100%";
-});
+
+  bar.style.width = "100%"; 
+
+  setTimeout(()=>{
+    login.classList.add("hide");
+    setTimeout(()=>{ login.style.display="none"; }, 500);
+  }, 2000);
+}
 
 /* MATRIX */
 const canvas = document.getElementById("matrix");

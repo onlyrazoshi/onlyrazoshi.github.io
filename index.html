@@ -421,12 +421,8 @@ function getDir(path){
   return path.split("/").filter(Boolean).reduce((dir, p) => dir[p], fs["/"]);
 }
 
-let history;
-try {
-  history = JSON.parse(localStorage.getItem("history")) || [];
-} catch {
-  history = [];
-}
+let history = [];
+let historyIndex = -1;
 
 input.addEventListener("keydown", (e) => {
 
@@ -435,11 +431,10 @@ input.addEventListener("keydown", (e) => {
 
     const cmd = input.value.trim();
 
-   if(cmd !== ""){
-  history.push(cmd);
-  localStorage.setItem("history", JSON.stringify(history));
-  historyIndex = history.length;
-}
+    if(cmd !== ""){
+      history.push(cmd);
+      historyIndex = history.length;
+    }
 
     logTerminal(cmd);
 if(cmd === "help"){
@@ -509,29 +504,20 @@ else{
     input.value = "";
   }
 
- else if(e.key === "ArrowUp"){
-  e.preventDefault();
+  else if(e.key === "ArrowUp"){
+    if(historyIndex > 0){
+      historyIndex--;
+      input.value = history[historyIndex];
+    }
+  }
 
-  if(history.length === 0) return;
-
-  historyIndex--;
-  if(historyIndex < 0) historyIndex = 0;
-
-  input.value = history[historyIndex];
-}
-
- else if(e.key === "ArrowDown"){
-  e.preventDefault();
-
-  if(history.length === 0) return;
-
-  historyIndex++;
-
-  if(historyIndex >= history.length){
-    historyIndex = history.length;
-    input.value = "";
-  } else {
-    input.value = history[historyIndex];
+  else if(e.key === "ArrowDown"){
+    if(historyIndex < history.length - 1){
+      historyIndex++;
+      input.value = history[historyIndex];
+    } else {
+      input.value = "";
+    }
   }
 
 });

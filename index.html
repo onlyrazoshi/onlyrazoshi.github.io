@@ -603,8 +603,17 @@ document.addEventListener("DOMContentLoaded", () => {
   visitorInfoSpan.innerText = "Guest user";
 });
 
-  // VISITOR COUNTER
-
+  // VISITOR COUNTER 
+  fetch("https://api.countapi.xyz/hit/razoshi-os/visits")
+.then(res => res.json())
+.then(data => {
+  document.getElementById("views").innerText =
+    "Visitors: " + data.value;
+})
+.catch(() => {
+  document.getElementById("views").innerText =
+    "Visitors: 1";
+});
   
 /* SMOOTH MOUSE GLOW */
 const glow = document.getElementById("mouseGlow");

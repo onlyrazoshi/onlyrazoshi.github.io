@@ -252,7 +252,6 @@ canvas#matrix {
   <h1>Welcome to Razoshi OS</h1>
   <button onclick="startOS()">Enter</button>
 </div>
-  <div id="bootScreen" style="display:none; color:#00ff88; font-family:monospace; text-align:center; margin-top:200px;</div>
 
 <!-- AVATAR AND HEADER -->
 <img class="avatar" src="https://cdn.discordapp.com/avatars/1106891304849391656/2e3698c0ab7c452f5e4c40121705f12a.webp?size=128" alt="Razoshi Avatar">
@@ -309,35 +308,10 @@ style="width:80%; max-width:700px; background:black; color:#00ff88; border:1px s
 
 <script>
 /* LOGIN */
- function startOS(){
+function startOS(){
   const login = document.getElementById("login");
-  const boot = document.getElementById("bootScreen");
-
-  login.style.display = "none";
-  boot.style.display = "block";
-
-  const lines = [
-    "Booting Razoshi OS...",
-    "Loading kernel...",
-    "Injecting hacks...",
-    "Connecting to network...",
-    "Access granted.",
-    "Welcome."
-  ];
-
-  let i = 0;
-
-  function showLine(){
-    if(i < lines.length){
-      boot.innerHTML += lines[i] + "<br>";
-      i++;
-      setTimeout(showLine, 600);
-    } else {
-      setTimeout(()=> boot.style.display="none", 500);
-    }
-  }
-
-  showLine();
+  login.classList.add("hide");
+  setTimeout(()=>{ login.style.display="none"; }, 500);
 }
 
 /* MATRIX */

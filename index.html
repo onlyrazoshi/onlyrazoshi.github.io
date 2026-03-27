@@ -441,6 +441,38 @@ input.addEventListener("keydown", (e) => {
 if(cmd === "help"){
   logTerminal("", "commands: help, whoami, clear, date, about, discord, github");
 }
+  else if(cmd === "ls"){
+  logTerminal("", Object.keys(getDir(currentPath)).join("  "));
+}
+
+else if(cmd.startsWith("cd ")){
+  let t = cmd.split(" ")[1];
+
+  if(t === ".."){
+    currentPath = "/";
+  } 
+  else if(getDir(currentPath)[t] && typeof getDir(currentPath)[t] === "object"){
+    currentPath += t + "/";
+  } 
+  else{
+    logTerminal("", "folder not found");
+  }
+}
+
+else if(cmd.startsWith("cat ")){
+  let f = cmd.split(" ")[1];
+  let dir = getDir(currentPath);
+
+  if(typeof dir[f] === "string"){
+    logTerminal("", dir[f]);
+  } else {
+    logTerminal("", "file not found");
+  }
+}
+
+else if(cmd === "pwd"){
+  logTerminal("", currentPath);
+}
 else if(cmd === "whoami"){
   logTerminal("", "you are user 😄");
 }

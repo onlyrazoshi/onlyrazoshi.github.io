@@ -591,7 +591,6 @@ setInterval(()=>{
   cpuSpan.innerText = Math.floor(Math.random()*100) + "%";
 }, 1000);
   
-  const visitorInfoSpan = document.getElementById("visitorInfo");
 // Visitor info
 fetch("https://ipapi.co/json/")
 .then(res => res.json())
@@ -608,13 +607,9 @@ fetch("https://api.countapi.xyz/hit/razoshi/os")
 .then(res => res.json())
 .then(data => {
   document.getElementById("views").innerText = "Visitors: " + data.value;
-});
-.then(res => res.json())
-.then(data=>{
-  visitorInfoSpan.innerText = `${data.ip} — ${data.city}, ${data.country_name}`;
 })
-.catch(err=>{
-  visitorInfoSpan.innerText = "Visitor info unavailable";
+.catch(()=>{
+  document.getElementById("views").innerText = "Visitors: unavailable";
 });
 
 /* SMOOTH MOUSE GLOW */

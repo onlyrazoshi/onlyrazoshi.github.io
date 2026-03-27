@@ -449,17 +449,18 @@ else if(cmd === "ls"){
   } else {
     logTerminal("", "error reading directory");
   }
+}
   
-  else if(cmd.startsWith("cat ")){
+ else if(cmd.startsWith("cat ")){
   let f = cmd.split(" ")[1];
   let dir = getDir(currentPath);
 
-  if(typeof dir[f] === "string"){
+  if(dir && typeof dir[f] === "string"){
     logTerminal("", dir[f]);
   } else {
     logTerminal("", "file not found");
-  }
-
+  }  
+}
 else if(cmd === "hack system"){
   let i = 0;
   let interval = setInterval(() => {

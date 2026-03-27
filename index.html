@@ -406,22 +406,6 @@ document.addEventListener("DOMContentLoaded", () => {
 const terminal = document.getElementById("terminalLog");
 const input = document.getElementById("cmdInput");
 
-  let fs = {
-  "/": {
-    "readme.txt": "Welcome to Razoshi OS",
-    "notes.txt": "type ls",
-    "secret": {
-      "passwords.txt": "root: 1337"
-    }
-  }
-};
-
-let currentPath = "/";
-  
-  function getDir(path){
-  return path.split("/").filter(Boolean).reduce((dir, p) => dir[p], fs["/"]);
-}
-
 let history = [];
 let historyIndex = -1;
 
@@ -440,12 +424,6 @@ input.addEventListener("keydown", (e) => {
     logTerminal(cmd);
 if(cmd === "help"){
   logTerminal("", "commands: help, whoami, clear, date, about, discord, github");
-}
-    
-}
-
-else if(cmd === "pwd"){
-  logTerminal("", currentPath);
 }
 else if(cmd === "whoami"){
   logTerminal("", "you are user 😄");
@@ -467,44 +445,6 @@ else if(cmd === "github"){
   logTerminal("", "Opening GitHub...");
   window.open("https://github.com/onlyrazoshi");
 }
-else{
-  if(cmd === "help"){
-  logTerminal("", "commands: help, whoami, clear, date, about, discord, github");
-}
-
-else if(cmd === "ls"){
-  logTerminal("", Object.keys(getDir(currentPath)).join("  "));
-}
-
-else if(cmd.startsWith("cd ")){
-  let t = cmd.split(" ")[1];
-
-  if(t === ".."){
-    currentPath = "/";
-  } 
-  else if(getDir(currentPath)[t] && typeof getDir(currentPath)[t] === "object"){
-    currentPath += t + "/";
-  } 
-  else{
-    logTerminal("", "folder not found");
-  }
-}
-
-else if(cmd.startsWith("cat ")){
-  let f = cmd.split(" ")[1];
-  let dir = getDir(currentPath);
-
-  if(typeof dir[f] === "string"){
-    logTerminal("", dir[f]);
-  } else {
-    logTerminal("", "file not found");
-  }
-}
-
-else if(cmd === "pwd"){
-  logTerminal("", currentPath);
-}
-
 else{
   logTerminal("", "command not found");
 }

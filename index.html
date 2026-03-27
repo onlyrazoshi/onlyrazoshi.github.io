@@ -424,6 +424,16 @@ input.addEventListener("keydown", (e) => {
     logTerminal(cmd);
 if(cmd === "help"){
   logTerminal("", "commands: help, whoami, clear, date, about, discord, github");
+  else if(cmd === "hack system"){
+  let i = 0;
+  let interval = setInterval(() => {
+    logTerminal("", "cracking password: " + Math.random().toString(36).substring(2,8));
+    i++;
+    if(i > 10){
+      clearInterval(interval);
+      logTerminal("", "[✓] password cracked: root_7391");
+    }
+  }, 200);
 }
 else if(cmd === "whoami"){
   logTerminal("", "you are user 😄");

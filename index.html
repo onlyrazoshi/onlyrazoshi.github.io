@@ -521,13 +521,16 @@ else{
 }
 
   else if(e.key === "ArrowDown"){
-    if(historyIndex < history.length - 1){
-      historyIndex++;
-      input.value = history[historyIndex];
-    } else {
-      input.value = "";
-    }
+  if(history.length === 0) return;
+
+  if(historyIndex < history.length - 1){
+    historyIndex++;
+    input.value = history[historyIndex];
+  } else {
+    historyIndex = history.length;
+    input.value = "";
   }
+}
 
 });
 

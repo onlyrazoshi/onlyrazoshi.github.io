@@ -603,26 +603,8 @@ document.addEventListener("DOMContentLoaded", () => {
   visitorInfoSpan.innerText = "Guest user";
 });
 
-  // VISITOR COUNTER (FIXED)
-fetch("https://api.countapi.xyz/get/razoshi-os/visits")
-.then(res => {
-  if(!res.ok) throw new Error();
-  return res.json();
-})
-.then(data => {
-  viewsSpan.innerText = "Visitors: " + data.value;
-})
-.catch(() => {
+  // VISITOR COUNTER
 
-  fetch("https://api.countapi.xyz/create?namespace=razoshi-os&key=visits&value=1")
-  .then(() => {
-    viewsSpan.innerText = "Visitors: 1";
-  })
-  .catch(() => {
-    viewsSpan.innerText = "Visitors: 1";
-  });
-
-});
   
 /* SMOOTH MOUSE GLOW */
 const glow = document.getElementById("mouseGlow");

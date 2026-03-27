@@ -596,7 +596,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("https://ipwho.is/")
   .then(res => res.json())
   .then(data => {
-    console.log("IP DATA:", data); // 👈 ეს დაგეხმარება debug-ში
+    console.log("IP DATA:", data); 
 
     if (!data.success) {
       throw new Error("IP API failed");

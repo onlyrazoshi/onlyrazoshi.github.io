@@ -844,6 +844,36 @@ window.onerror = function(msg, url, line){
   console.log("Error:", msg, "Line:", line);
   return true;
 };
+  let godActive = false;
+
+function activateGodMode(){
+  godActive = true;
+
+  document.body.classList.add("godmode");
+
+  logTerminal("", "⚠ SYSTEM OVERRIDE...");
+  logTerminal("", "⚠ ROOT ACCESS GRANTED");
+  logTerminal("", "⚠ GODMODE ACTIVATED");
+
+  // SCREEN SHAKE
+  let i = 0;
+  let shake = setInterval(()=>{
+    document.body.style.transform =
+      `translate(${Math.random()*10-5}px, ${Math.random()*10-5}px)`;
+    i++;
+    if(i > 20){
+      clearInterval(shake);
+      document.body.style.transform = "none";
+    }
+  }, 30);
+
+  // GLITCH TEXT
+  let glitch = setInterval(()=>{
+    logTerminal("", Math.random().toString(36).substring(2,8));
+  }, 100);
+
+  setTimeout(()=> clearInterval(glitch), 2000);
+}
 </script>
 
   <div class="window" id="myWindow">

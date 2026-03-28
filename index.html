@@ -575,20 +575,6 @@ else if(cmd === "hack system"){
     }
   }, 200);
 }
- 
-  let i = 0;
-
-  let interval = setInterval(()=>{
-    if(i < steps.length){
-      logTerminal("", steps[i]);
-      i++;
-    } else {
-      clearInterval(interval);
-      logTerminal("", "[✓] ACCESS GRANTED to " + target);
-      startHackVisual(); // 🔥 effect
-    }
-  }, 800);
-}
 
 else if(cmd === "whoami"){
   logTerminal("", "you are user 😄");

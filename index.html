@@ -564,19 +564,6 @@ else if(cmd.startsWith("hack ")){
     "Decrypting data..."
   ];
 
-  let i = 0;
-
-  let interval = setInterval(()=>{
-    if(i < steps.length){
-      logTerminal("", steps[i]);
-      i++;
-    } else {
-      clearInterval(interval);
-      logTerminal("", "[✓] ACCESS GRANTED to " + target);
-      startHackVisual(); 
-    }
-  }, 800);
-}
 else if(cmd === "hack system"){
   let i = 0;
   let interval = setInterval(() => {

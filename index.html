@@ -558,6 +558,33 @@ else if(cmd === "hack system"){
     }
   }, 200);
 }
+  else if(cmd.startsWith("hack ")){
+  let target = cmd.split(" ")[1];
+
+  logTerminal("", "Connecting to " + target + " ...");
+
+  let steps = [
+    "Resolving IP...",
+    "Establishing secure connection...",
+    "Bypassing firewall...",
+    "Injecting payload...",
+    "Brute forcing credentials...",
+    "Decrypting data..."
+  ];
+
+  let i = 0;
+
+  let interval = setInterval(()=>{
+    if(i < steps.length){
+      logTerminal("", steps[i]);
+      i++;
+    } else {
+      clearInterval(interval);
+      logTerminal("", "[✓] ACCESS GRANTED to " + target);
+      startHackVisual(); // 🔥 effect
+    }
+  }, 800);
+}
 
 else if(cmd === "whoami"){
   logTerminal("", "you are user 😄");

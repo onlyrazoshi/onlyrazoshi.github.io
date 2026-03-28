@@ -14,8 +14,6 @@ body {
   margin: 0;
   text-align: center;
   overflow-x: hidden;
-  
-    cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
 }
 
 /* LOGIN */
@@ -564,6 +562,19 @@ else if(cmd.startsWith("hack ")){
     "Decrypting data..."
   ];
 
+  let i = 0;
+
+  let interval = setInterval(()=>{
+    if(i < steps.length){
+      logTerminal("", steps[i]);
+      i++;
+    } else {
+      clearInterval(interval);
+      logTerminal("", "[✓] ACCESS GRANTED to " + target);
+      startHackVisual(); 
+    }
+  }, 800);
+}
 else if(cmd === "hack system"){
   let i = 0;
   let interval = setInterval(() => {
@@ -574,6 +585,20 @@ else if(cmd === "hack system"){
       logTerminal("", "[✓] password cracked: root_7391");
     }
   }, 200);
+}
+ 
+  let i = 0;
+
+  let interval = setInterval(()=>{
+    if(i < steps.length){
+      logTerminal("", steps[i]);
+      i++;
+    } else {
+      clearInterval(interval);
+      logTerminal("", "[✓] ACCESS GRANTED to " + target);
+      startHackVisual(); // 🔥 effect
+    }
+  }, 800);
 }
 
 else if(cmd === "whoami"){

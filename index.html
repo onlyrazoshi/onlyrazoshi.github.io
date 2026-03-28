@@ -865,8 +865,16 @@ function activateGodMode(){
   // SCREEN SHAKE
   let i = 0;
   let shake = setInterval(()=>{
-    document.body.style.transform =
-      `translate(${Math.random()*10-5}px, ${Math.random()*10-5}px)`;
+  document.body.style.marginLeft = (Math.random()*10-5) + "px";
+  document.body.style.marginTop = (Math.random()*10-5) + "px";
+  i++;
+
+  if(i > 20){
+    clearInterval(shake);
+    document.body.style.marginLeft = "0px";
+    document.body.style.marginTop = "0px";
+  }
+}, 30);
     i++;
     if(i > 20){
       clearInterval(shake);

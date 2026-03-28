@@ -685,23 +685,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 1000);
 
   // ✅ IP (STABLE + FALLBACK)
-  fetch("https://ipapi.co/json/")
-  .then(res => res.json())
-  .then(data => {
+fetch("https://ipwho.is/")
+.then(res => res.json())
+.then(data => {
+
+  if(data.success){
     visitorInfoSpan.innerText =
-      data.ip + " — " + data.city + ", " + data.country_name;
-  })
-  .catch(() => {
-    // fallback
-    fetch("https://api.ipify.org?format=json")
-    .then(res => res.json())
-    .then(ip => {
-      visitorInfoSpan.innerText = ip.ip + " — Unknown location";
-    })
-    .catch(()=>{
-      visitorInfoSpan.innerText = "Guest user";
-    });
-  });
+      data.ip + " — " + (data.country || "Unknown");
+  } else {
+    visitorInfoSpan.innerText =
+      data.ip || "Guest user";
+  }
+
+})
+.catch(() => {
+  visitorInfoSpan.innerText = "Guest user";
+});
 
   // ✅ VISITOR COUNTER (NO RESET EVER)
   fetch("https://api.countapi.xyz/hit/razoshi-os/visits")

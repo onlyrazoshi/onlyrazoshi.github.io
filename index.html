@@ -282,6 +282,39 @@ canvas#matrix {
   border-color: red;
   box-shadow: 0 0 25px red;
 }
+  .calculator {
+  width: 250px;
+  margin: 40px auto;
+  border: 2px solid #00ff88;
+  padding: 10px;
+  background: #050505;
+}
+
+.calculator input {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  background: black;
+  color: #00ff88;
+  border: 1px solid #00ff88;
+  text-align: right;
+  padding: 5px;
+}
+
+.calc-buttons button {
+  width: 50px;
+  height: 40px;
+  margin: 3px;
+  background: black;
+  color: #00ff88;
+  border: 1px solid #00ff88;
+  cursor: pointer;
+}
+
+.calc-buttons button:hover {
+  background: #00ff88;
+  color: black;
+}
 </style>
 </head>
 <body>
@@ -336,6 +369,33 @@ style="width:80%; max-width:700px; background:black; color:#00ff88; border:1px s
 </div>
 
 <audio id="audio"></audio>
+  <!-- CALCULATOR -->
+<div class="calculator">
+  <input id="calcDisplay" readonly>
+  <div class="calc-buttons">
+    <button onclick="press('7')">7</button>
+    <button onclick="press('8')">8</button>
+    <button onclick="press('9')">9</button>
+    <button onclick="press('/')">/</button>
+
+    <button onclick="press('4')">4</button>
+    <button onclick="press('5')">5</button>
+    <button onclick="press('6')">6</button>
+    <button onclick="press('*')">*</button>
+
+    <button onclick="press('1')">1</button>
+    <button onclick="press('2')">2</button>
+    <button onclick="press('3')">3</button>
+    <button onclick="press('-')">-</button>
+
+    <button onclick="press('0')">0</button>
+    <button onclick="press('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="press('+')">+</button>
+
+    <button onclick="clearCalc()">C</button>
+  </div>
+</div>
 
 <!-- razoshi repos -->
 <h2 style="color:#00ff88">github repos</h2>
@@ -627,7 +687,14 @@ else if(cmd === "clear"){
 else if(cmd === "date"){
   logTerminal("", new Date().toString());
 }
-
+else if(cmd.startsWith("calc ")){
+ try{
+  let result = eval(cmd.replace("calc ",""));
+  logTerminal("", result);
+}catch(e){
+  logTerminal("", "error");
+}
+}
 else if(cmd === "about"){
   logTerminal("", "Razoshi OS - custom web terminal 👾");
 }
@@ -882,6 +949,28 @@ function activateGodMode(){
   setTimeout(()=> clearInterval(glitch), 2000);
 }
 </script>
+  let calc = "";
+
+function press(val){
+  calc += val;
+  document.getElementById("calcDisplay").value = calc;
+}
+
+function calculate(){
+  try{
+    calc = eval(calc).toString();
+    document.getElementById("calcDisplay").value = calc;
+  }catch{
+    document.getElementById("calcDisplay").value = "error";
+    calc = "";
+  }
+}
+
+function clearCalc(){
+  calc = "";
+  document.getElementById("calcDisplay").value = "";
+}
+  
 
   <div class="window" id="myWindow">
   <div class="titlebar">

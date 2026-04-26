@@ -915,7 +915,11 @@ setInterval(()=>{
 }, 3000);
 
 window.onerror = function(msg, url, line){
-  // 🔥 CALCULATOR FIX
+ 
+  console.log("Error:", msg, "Line:", line);
+  return true;
+};
+  // 🔥 CALCULATOR
 let calc = "";
 
 function press(val){
@@ -937,9 +941,7 @@ function clearCalc(){
   calc = "";
   document.getElementById("calcDisplay").value = "";
 }
-  console.log("Error:", msg, "Line:", line);
-  return true;
-};
+
   let godActive = false;
 
 function activateGodMode(){

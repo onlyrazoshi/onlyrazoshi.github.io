@@ -1134,6 +1134,155 @@ function showTimestamp(){
   document.getElementById("timestampResult").innerText =
   Math.floor(Date.now()/1000);
 }
+// JSON FORMATTER
+function formatJSON(){
+
+  try{
+
+    let raw =
+      document.getElementById("jsonInput").value;
+
+    let formatted =
+      JSON.stringify(
+        JSON.parse(raw),
+        null,
+        2
+      );
+
+    document.getElementById("jsonResult")
+      .textContent = formatted;
+
+  }catch{
+
+    document.getElementById("jsonResult")
+      .textContent = "Invalid JSON";
+
+  }
+
+}
+
+// QR GENERATOR
+function generateQR(){
+
+  let text =
+    document.getElementById("qrInput").value;
+
+  let box =
+    document.getElementById("qrResult");
+
+  box.innerHTML = "";
+
+  new QRCode(box,{
+    text:text,
+    width:150,
+    height:150
+  });
+
+}
+
+// COLOR PICKER
+document.addEventListener("DOMContentLoaded",()=>{
+
+  const picker =
+    document.getElementById("colorPicker");
+
+  picker.addEventListener("input",()=>{
+
+    document.getElementById("colorResult")
+      .innerText = picker.value;
+
+  });
+
+});
+
+// HASH GENERATOR
+async function generateHash(){
+
+  let text =
+    document.getElementById("hashInput").value;
+
+  const msgUint8 =
+    new TextEncoder().encode(text);
+
+  const hashBuffer =
+    await crypto.subtle.digest(
+      "SHA-256",
+      msgUint8
+    );
+
+  const hashArray =
+    Array.from(
+      new Uint8Array(hashBuffer)
+    );
+
+  const hashHex =
+    hashArray
+    .map(b =>
+      b.toString(16).padStart(2,"0")
+    )
+    .join("");
+
+  document.getElementById("hashResult")
+    .innerText = hashHex;
+
+}
+
+// TEXT DIFF
+function compareText(){
+
+  let a =
+    document.getElementById("diff1").value;
+
+  let b =
+    document.getElementById("diff2").value;
+
+  if(a === b){
+
+    document.getElementById("diffResult")
+      .textContent = "Texts are identical";
+
+  }else{
+
+    document.getElementById("diffResult")
+      .textContent =
+      "Texts are different";
+
+  }
+
+}
+
+// REGEX TESTER
+function testRegex(){
+
+  try{
+
+    let pattern =
+      document.getElementById("regexPattern").value;
+
+    let text =
+      document.getElementById("regexText").value;
+
+    let regex =
+      new RegExp(pattern,"g");
+
+    let matches =
+      text.match(regex);
+
+    document.getElementById("regexResult")
+      .textContent =
+      matches
+      ? matches.join("\n")
+      : "No matches";
+
+  }catch{
+
+    document.getElementById("regexResult")
+      .textContent =
+      "Invalid Regex";
+
+  }
+
+}
 </script>
  
   

@@ -431,6 +431,69 @@ style="width:80%; max-width:700px; background:black; color:#00ff88; border:1px s
   </div>
 
 </div>
+  <h2 style="color:#00ff88;">🧰 Advanced Developer Toolbox</h2>
+
+<div class="repos">
+
+  <!-- JSON FORMATTER -->
+  <div class="repo">
+    <h3>📄 JSON Formatter</h3>
+    <textarea id="jsonInput" placeholder="Paste JSON here"></textarea>
+    <button onclick="formatJSON()">Format</button>
+    <pre id="jsonResult"></pre>
+  </div>
+
+  <!-- QR GENERATOR -->
+  <div class="repo">
+    <h3>🔳 QR Generator</h3>
+    <input id="qrInput" placeholder="Enter text or URL">
+    <button onclick="generateQR()">Generate</button>
+    <div id="qrResult"></div>
+  </div>
+
+  <!-- COLOR PICKER -->
+  <div class="repo">
+    <h3>🎨 Color Picker</h3>
+    <input type="color" id="colorPicker">
+    <p id="colorResult"></p>
+  </div>
+
+  <!-- HASH GENERATOR -->
+  <div class="repo">
+    <h3>🔐 SHA-256 Hash</h3>
+    <input id="hashInput" placeholder="Text">
+    <button onclick="generateHash()">Generate</button>
+    <p id="hashResult"></p>
+  </div>
+
+  <!-- TEXT DIFF -->
+  <div class="repo">
+    <h3>📝 Text Diff</h3>
+
+    <textarea id="diff1" placeholder="Text 1"></textarea>
+
+    <textarea id="diff2" placeholder="Text 2"></textarea>
+
+    <button onclick="compareText()">Compare</button>
+
+    <pre id="diffResult"></pre>
+  </div>
+
+  <!-- REGEX TESTER -->
+  <div class="repo">
+    <h3>💻 Regex Tester</h3>
+
+    <input id="regexPattern" placeholder="Regex">
+
+    <textarea id="regexText"
+    placeholder="Text"></textarea>
+
+    <button onclick="testRegex()">Test</button>
+
+    <pre id="regexResult"></pre>
+  </div>
+
+</div>
   <footer>
   <p>site coded by pagoni hax & razoshi</p>
   <p>Music by Death.Syndicate</p>

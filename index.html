@@ -1002,6 +1002,44 @@ function activateGodMode(){
 
   setTimeout(()=> clearInterval(glitch), 2000);
 }
+// PASSWORD GENERATOR
+function generatePassword(){
+  const chars =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+  let pass = "";
+
+  for(let i=0;i<16;i++){
+    pass += chars.charAt(
+      Math.floor(Math.random()*chars.length)
+    );
+  }
+
+  document.getElementById("passwordResult").innerText = pass;
+}
+
+// UUID
+function generateUUID(){
+  let uuid =
+  crypto.randomUUID();
+
+  document.getElementById("uuidResult").innerText = uuid;
+}
+
+// BASE64
+function encodeBase64(){
+  let txt =
+  document.getElementById("base64Input").value;
+
+  document.getElementById("base64Result").innerText =
+  btoa(txt);
+}
+
+// TIMESTAMP
+function showTimestamp(){
+  document.getElementById("timestampResult").innerText =
+  Math.floor(Date.now()/1000);
+}
 </script>
  
   

@@ -290,8 +290,7 @@ canvas#matrix {
   border: 2px solid #00ff88;
   padding: 10px;
   background: #050505;
-  z-index: 1;
-  display: none;
+  z-index: 9999;
 }
 
 .repo textarea,
@@ -552,14 +551,8 @@ function startOS(){
 
   setTimeout(()=>{
     login.classList.add("hide");
-    
-    document.querySelector(".calculator").style.display = "block";
-    
-    setTimeout(()=>{
-    login.style.display="none";
-  },500);
- 
-},2000);
+    setTimeout(()=>{ login.style.display="none"; }, 500);
+  }, 2000);
 }
 
 /* MATRIX */

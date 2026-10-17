@@ -569,6 +569,11 @@ function drawMatrix() {
     drops[i]++;
   }
 }
+  function animateMatrix() {
+  drawMatrix();
+  requestAnimationFrame(animateMatrix);
+}
+animateMatrix();
 
 /* MUSIC PLAYER */
 const playlist = [
